@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import HomePage from "./pages/HomePage"
+import DrinksPage from "./pages/DrinksPage"
+import NavBar from "./components/NavBar"
+import Form from "./components/Form"
+import CocktailPage from "./pages/CocktailPage"
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+      </Switch>
+      <div className="flex justify-center my-12">
+        <Form />
+      </div>
+      <Switch>
+
+        <Route exact path='/drinks/:spirit' component={DrinksPage} />
+        <Route exact path='/drink/:drinkId' component={CocktailPage} />
+      </Switch>
+    </Router>
+  )
 }
 
-export default App;
+export default App
